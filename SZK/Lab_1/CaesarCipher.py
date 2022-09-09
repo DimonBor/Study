@@ -19,7 +19,8 @@ def caesar(string, key):
 def uncaesar(string, key):
     output = ""
     for i in string:
-        index = alphabet.index(i)-key+len(alphabet) if (alphabet.index(i)-key)<0 else alphabet.index(i)-key
+        index = alphabet.index(i)-key
+        while index < 0: index += len(alphabet)
         output += alphabet[index]
 
     return output
@@ -51,7 +52,7 @@ def main(args=sys.argv):
         
     # Using plain text as input source 
     else:
-        inputText = input("Enter input text:")
+        inputText = input("Enter input text: ")
 
     # Taking key from args 
     try: 
@@ -65,13 +66,14 @@ def main(args=sys.argv):
     # Choosing an option 
     if "--encrypt" in args:
         print(f"Encrypted text is:\n{caesar(inputText, key)}")
-    elif "--decrypt" in args:
+    if "--decrypt" in args:
         print(f"Decrypted text is:\n{uncaesar(inputText, key)}")
-    elif "--brute" in args:
+    if "--brute" in args:
         print("Brute forced variants are:\n")
         bruteForce(inputText)
 
     return 0
+
 
 if __name__ == "__main__":
     main()
