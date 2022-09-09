@@ -1,0 +1,8 @@
+sudo iptables -t nat -A POSTROUTING -o r1-eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i r1-eth0 -o r1-eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i r1-eth1 -o r1-eth0 -j ACCEPT
+#sudo iptables -N LOGGING
+#sudo iptables -A FORWARD -j LOGGING
+#sudo iptables -A LOGGING -j LOG --log-prefix "IPTables-Dropped: " --log-level 7
+#sudo iptables -A LOGGING -j ULOG --ulog-prefix "IPTables-Dropped" 
+#sudo iptables -A LOGGING -j DROP
