@@ -28,9 +28,9 @@ def uncaesar(string, key):
 def bruteForce(string):
     for key in range(len(alphabet)): 
         print(
-            f"Result with key {key}\n\n"
-            uncaesar(string, key)
-            "\n\n"
+            f"Result with key {key}\n\n",
+            uncaesar(string, key),
+            "\n"
         )
 
 
@@ -49,17 +49,29 @@ def main(args=sys.argv):
             print("ERROR, can`t open file!")
             return 0
         
-
     # Using plain text as input source 
     else:
-        print("Enter input text")
+        inputText = input("Enter input text:")
 
     # Taking key from args 
     try: 
-        key = args[args.index("--key")+1]
+        key = int(args[args.index("--key")+1])
     except:
-        print("ERROR, no key specified!")
-        return 0
+        if "--brute" not in args:
+            print("ERROR, no key specified!")
+            return 0
+        else: pass
+
+    # Choosing an option 
+    if "--encrypt" in args:
+        print(f"Encrypted text is:\n{caesar(inputText, key)}")
+    elif "--decrypt" in args:
+        print(f"Decrypted text is:\n{uncaesar(inputText, key)}")
+    elif "--brute" in args:
+        print("Brute forced variants are:\n")
+        bruteForce(inputText)
+
+    return 0
 
 if __name__ == "__main__":
     main()
