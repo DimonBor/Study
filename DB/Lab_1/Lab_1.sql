@@ -36,27 +36,9 @@ ALTER TABLE `workers` ADD FOREIGN KEY (`position`) REFERENCES `positions` (`posi
 
 ALTER TABLE `workers` ADD FOREIGN KEY (`clientID`) REFERENCES `clients` (`clientID`);
 
-CREATE TABLE `clients_workers` (
-  `clients_firstname` varchar NOT NULL,
-  `workers_firstname` varchar NOT NULL,
-  PRIMARY KEY (`clients_firstname`, `workers_firstname`)
-);
+ALTER TABLE `workers` ADD FOREIGN KEY (`firstname`) REFERENCES `clients` (`firstname`);
 
-ALTER TABLE `clients_workers` ADD FOREIGN KEY (`clients_firstname`) REFERENCES `clients` (`firstname`);
-
-ALTER TABLE `clients_workers` ADD FOREIGN KEY (`workers_firstname`) REFERENCES `workers` (`firstname`);
-
-
-CREATE TABLE `clients_workers(1)` (
-  `clients_secondname` varchar NOT NULL,
-  `workers_secondname` varchar NOT NULL,
-  PRIMARY KEY (`clients_secondname`, `workers_secondname`)
-);
-
-ALTER TABLE `clients_workers(1)` ADD FOREIGN KEY (`clients_secondname`) REFERENCES `clients` (`secondname`);
-
-ALTER TABLE `clients_workers(1)` ADD FOREIGN KEY (`workers_secondname`) REFERENCES `workers` (`secondname`);
-
+ALTER TABLE `workers` ADD FOREIGN KEY (`secondname`) REFERENCES `clients` (`secondname`);
 
 ALTER TABLE `accounts` ADD FOREIGN KEY (`clientID`) REFERENCES `clients` (`clientID`);
 
