@@ -59,7 +59,10 @@ def hack(string):
         (alphabet.index(XY1[1]) - alphabet.index(XY2[1])) % len(alphabet)
     )
 
+    print(f"XY differences:\n\t-Open text: {pair1[0]}\n\t-Closed text: {pair1[1]}")
+
     # Finding A and B
+    print(f"Open text XY^-1(mod len(alphabet)): {pow(pair1[0], -1, len(alphabet))}")
     keyA = (pow(pair1[0], -1, len(alphabet)) * pair1[1]) % len(alphabet)
     keyB = (alphabet.index(XY1[1]) - keyA * alphabet.index(XY1[0])) % len(alphabet)
 
