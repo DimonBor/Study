@@ -50,7 +50,8 @@ def frequencyAnalysis(string):
         findKey("А", sortedFreq[0]), 
         findKey("Н", sortedFreq[0]),
         findKey("И", sortedFreq[0]),
-        findKey("В", sortedFreq[0]),
+        findKey("Т", sortedFreq[0]),
+        findKey("В", sortedFreq[0])
     )
 
 
@@ -158,10 +159,11 @@ def hack(inputText):
         possibleKeys = frequencyAnalysis(output)
         possibleKeysArr.append(possibleKeys)
         print(f"Possibe keys: {possibleKeys}\n")
-    
+
     for i in possibleKeysArr:
-        output = [alphabet[j] for j in i]
-        print(output)
+        print([alphabet[j] for j in i])
+
+
 
 
 def main(args=sys.argv):
