@@ -6,15 +6,15 @@ drop table object_types;
 -- Create tables
 Create table object_types (
 	object_type_id Numeric(20,0) NOT NULL ,
+	parent_id Numeric (20,0),
 	name Varchar(100),
 	description Varchar(1000));
-
 
 Create table objects (
 	object_id Numeric(20,0) NOT NULL ,
 	parent_id Numeric(20,0),
 	object_type_id Numeric(20,0) NOT NULL ,
-	name Varchar(100));
+	name Varchar);
 
 Create table attributes (
 	attr_id Numeric(20,0) NOT NULL ,
@@ -41,6 +41,10 @@ Alter table objects
 add Constraint r_5 foreign key (object_type_id)
 references object_types (object_type_id)  on delete cascade;
 
+Alter table object_types
+add Constraint r_8 foreign key (parent_id)
+references object_types (object_type_id)  on delete cascade;
+
 Alter table attributes
 add  foreign key (object_type_id)
 references object_types (object_type_id) ;
@@ -60,9 +64,30 @@ references attributes (attr_id) ;
 
 commit;
 
-insert into OBJECT_TYPES values(1,'emp','Employee');
-insert into OBJECT_TYPES values(2,'salgrade','Salgrade');
-insert into OBJECT_TYPES values(3,'dept','Department');
+insert into OBJECT_TYPES values(1, NULL, 'emp','Employee');
+insert into OBJECT_TYPES values(2, NULL, 'salgrade','Salgrade');
+insert into OBJECT_TYPES values(3, NULL, 'dept','Department');
+insert into OBJECT_TYPES values(4, NULL, 'g_object','Geo objects');
+insert into OBJECT_TYPES values(5, NULL, 'b_part','Buildings parts');
+insert into OBJECT_TYPES values(6, NULL, 'equip','Equipments');
+
+
+insert into OBJECT_TYPES values(7, 4, 'rg','Region');
+insert into OBJECT_TYPES values(8, 4, 'city','City');
+insert into OBJECT_TYPES values(9, 4, 'st','Street');
+insert into OBJECT_TYPES values(10, 4, 'bg','Building');
+
+insert into OBJECT_TYPES values(11, 5, 'flr','Floor');
+insert into OBJECT_TYPES values(12, 5, 'flt','Flat');
+
+insert into OBJECT_TYPES values(13, 6, 'net_equip','Network equipment');
+insert into OBJECT_TYPES values(14, 6, 'kitch_equip','Kitchen equipment');
+
+-- From Course
+
+insert into OBJECT_TYPES values(15, NULL, 'office','Office');
+insert into OBJECT_TYPES values(16, NULL, 'car','Car for rent');
+
 
 commit;
 
@@ -100,6 +125,61 @@ insert into objects values(10,NULL,3,'ACCOUNTING');
 insert into objects values(20,NULL,3,'RESEARCH');
 insert into objects values(30,NULL,3,'SALES');
 insert into objects values(40,NULL,3,'OPERATIONS');
+
+insert into objects values(1006,NULL,7,'Sumy oblast`');
+insert into objects values(1007,1006,8,'Ohtyrka');
+	insert into objects values(1008,1007,9,'Kharkivska st.');
+		insert into objects values(1009,1008,10,'House 1');
+			insert into objects values(1010,1009,11,'Floor 1');
+				insert into objects values(1022,1010,12,'Flat 1');
+					insert into objects values(1042,1022,13,'Computer');
+					insert into objects values(1043,1022,13,'Router');
+					insert into objects values(1045,1022,14,'Coffe machine');
+
+insert into objects values(1011,1006,8,'Sumy');
+	
+	insert into objects values(1012,1011,9,'Kharkivska st.');
+		insert into objects values(1014,1012,10,'House 1');
+			insert into objects values(1015,1014,11,'Floor 1');
+				insert into objects values(1022,1014,12,'Flat 1');
+					insert into objects values(1029,1022,13,'Computer');
+					insert into objects values(1030,1022,13,'Router');
+					insert into objects values(1031,1022,14,'Coffe machine');
+				
+	insert into objects values(1013,1011,9,'Mykoly Sumtsova');
+		insert into objects values(1016,1013,10,'House 1');
+			insert into objects values(1018,1016,11,'Floor 1');
+				insert into objects values(1023,1018,12,'Flat 1');
+					insert into objects values(1026,1023,13,'Computer');
+					insert into objects values(1027,1023,13,'Router');
+					insert into objects values(1028,1023,14,'Coffe machine');
+
+			insert into objects values(1019,1016,11,'Floor 2');
+				insert into objects values(1024,1019,12,'Flat 2');
+					insert into objects values(1032,1024,13,'Laptop');
+					insert into objects values(1033,1024,13,'Switch');
+					insert into objects values(1034,1024,14,'Oven');
+
+		insert into objects values(1017,1013,10,'House 2');
+			insert into objects values(1020,1017,11,'Floor 1');
+				insert into objects values(1025,1020,12,'Flat 1');
+					insert into objects values(1035,1025,13,'Laptop');
+					insert into objects values(1036,1025,13,'Router');
+
+			insert into objects values(1021,1017,11,'Floor 2');
+
+-- From course
+
+insert into objects values(1037,NULL,15,'Sumy office');
+	insert into objects values(1038,1037,16,'Nissan Juke');
+	insert into objects values(1039,1037,16,'Ford Fiesta');
+	insert into objects values(1040,1037,16,'Toyota Cresta');
+
+insert into objects values(1041,NULL,15,'Chernihiv office');
+	insert into objects values(1042,1041,16,'Renault Logan');
+	insert into objects values(1043,1041,16,'Citroen C4');
+
+
 
 commit;
 
@@ -180,9 +260,5 @@ insert into Params values(7782,5,NULL,10,NULL);
 insert into Params values(7566,5,NULL,20,NULL);
 insert into Params values(30,8,'CHICAGO',NULL,NULL);
 insert into Params values(40,8,'BOSTON',NULL,NULL);
-
-commit;
-
-alter table object_types add column parent_id Numeric(20,0) references object_types(object_type_id);
 
 commit;
