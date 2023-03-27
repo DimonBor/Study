@@ -1,0 +1,1 @@
+select aconf.i_configuration, odesc.name, oval.value from Option_Values oval inner join Option_Descriptions odesc on oval.i_option = odesc.i_option inner join Active_Configurations aconf on oval.i_configuration = aconf.i_configuration join Groups gr on odesc.i_group = gr.i_group where aconf.status = "Current" and odesc.name = "Enabled" and gr.name like "NetAccess";
