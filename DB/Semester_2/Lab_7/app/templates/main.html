@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Lab 7 Borshch</title>
+<body>
+<table style="border: 1px solid black;">
+    <tr style="border: 1px solid black;">{% for key in array[0] %}<th style="border: 1px solid black;">{{ key }}</th>{% endfor %}</tr>
+    {% for row in array %}
+    <tr style="border: 1px solid black;">{% for key in row %} 
+        <th style="border: 1px solid black;">{{ row[key] }}</th> {% endfor %}
+    </tr> {% endfor %}
+</table>
+<p>Page: {{ page }}/{{ pageCount }}</p>
+<form action="{{ path }}"> 
+    <input type="hidden" name="page" value="{{ page-1}}" />
+    <input type="hidden" name="pagesize" value="{{ pagesize }}" />
+    <input type="submit" value="Prev" {% if page == 1 %} disabled {% endif %}/>
+</form>
+<form action="{{ path }}"> 
+    <input type="hidden" name="page" value="{{ page+1}}" />
+    <input type="hidden" name="pagesize" value="{{ pagesize }}" />
+    <input type="submit" value="Next" {% if page == pageCount %} disabled {% endif %}/>
+</form>
+<p>Go to page:</p>
+<form action="{{ path }}"> 
+    <input type="text" name="page"/>
+    <input type="hidden" name="pagesize" value="{{ pagesize }}" />
+    <input type="submit" value="Go"/>
+</form>
+</body>
