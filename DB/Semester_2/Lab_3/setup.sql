@@ -1,6 +1,6 @@
+DROP TABLE "Rents";
 DROP TABLE "Clients";
 DROP TABLE "Cars";
-DROP TABLE "Rents"
 
 
 CREATE TABLE "Clients" (
@@ -45,14 +45,14 @@ INSERT INTO "Cars" VALUES (9, 'GMC', 'AA 7785 AA', 'green', 32);
 INSERT INTO "Cars" VALUES (10, 'Nissan Skyline GT R32', 'AA 7786 AA', 'black', 19);
 INSERT INTO "Cars" VALUES (11, 'Honda Civic', 'AA 7787 AA', 'red', 93);
 
-INSERT INTO "Clients" VALUES (1, 'Bob', 'Peters', 15551234567, 0);
-INSERT INTO "Clients" VALUES (2, 'John', 'Smith', 442012345678, 0);
-INSERT INTO "Clients" VALUES (3, 'Emily', 'Johnson', 33123456789, 0);
-INSERT INTO "Clients" VALUES (4, 'Michael', 'Brown', 493012345678, 0);
-INSERT INTO "Clients" VALUES (5, 'Olivia', 'Davis', 61212345678, 0);
-INSERT INTO "Clients" VALUES (6, 'William', 'Wilson', 81312345678, 0);
-INSERT INTO "Clients" VALUES (7, 'Sophia', 'Thompson', 390212345678, 0);
-INSERT INTO "Clients" VALUES (8, 'Benjamin', 'Davis', 525512345678, 0);
-INSERT INTO "Clients" VALUES (9, 'Ava', 'Robinson', 74951234567, 0);
-INSERT INTO "Clients" VALUES (10, 'James', 'Anderson', 861012345678, 0);
-INSERT INTO "Clients" VALUES (11, 'Isabella', 'Martinez', 97141234567, 0);
+INSERT INTO "Clients" VALUES (1, 'Bob', 'Peters', 15534567, 0);
+INSERT INTO "Clients" VALUES (2, 'John', 'Smith', 44201678, 0);
+INSERT INTO "Clients" VALUES (3, 'Emily', 'Johnson', 3316789, 0);
+INSERT INTO "Clients" VALUES (4, 'Michael', 'Brown', 2345678, 0);
+INSERT INTO "Clients" VALUES (5, 'Olivia', 'Davis', 6125678, 0);
+INSERT INTO "Clients" VALUES (6, 'William', 'Wilson', 8135678, 0);
+INSERT INTO "Clients" VALUES (7, 'Sophia', 'Thompson', 39345678, 0);
+INSERT INTO "Clients" VALUES (8, 'Benjamin', 'Davis', 5345678, 0);
+INSERT INTO "Clients" VALUES (9, 'Ava', 'Robinson', 7495567, 0);
+INSERT INTO "Clients" VALUES (10, 'James', 'Anderson', 86145678, 0);
+INSERT INTO "Clients" VALUES (11, 'Isabella', 'Martinez', 9714567, 0);
